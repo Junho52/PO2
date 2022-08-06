@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <title>register</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Register</h1>
+    <a href="/">index</a>
+    <a href="/loginpage">login</a>
+    <p>Please fill in this form to create an account.</p>
+    <hr>
+
+    <label for="username"><b>Username</b></label>
+    <input placeholder="Enter Username" name="username" id="username" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input placeholder="Enter Password" name="psw" id="psw" required>
+    <hr>
+
+    <button onclick="send()" class="registerbtn">Register</button>
+
+  </div>
+
+  <script>
+    const send = () => {
+      $.ajax({
+        type: 'POST',
+        url: '/register',
+        data: {
+            username: document.getElementById('username').value,
+            password: document.getElementById('psw').value
+        },
+
+        success: (result) => {  //result = 콜백 함수
+          return console.log(result);
+        },
+        error: (err) => {
+          console.error(err)
+        }
+      })
+    }
+  </script>
+</body>
+
+</html>
